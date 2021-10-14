@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <Header />
-    <Results />
     <Map />
   </div>
 </template>
@@ -9,14 +8,12 @@
 <script>
 import Header from './components/Header.vue'
 import Map from './components/Map.vue'
-import Results from './components/Results.vue'
 
 export default {
   name: 'App',
   components: {
     Header,
     Map,
-    Results,
   }
 }
 </script>
