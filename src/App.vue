@@ -19,6 +19,9 @@ export default {
 </script>
 
 <style lang="scss">
+$VeryDarkGray: hsl(0, 0%, 17%);
+$DarkGray: hsl(0, 0%, 59%);
+
 body {
   margin: 0 !important;
   padding: 0;

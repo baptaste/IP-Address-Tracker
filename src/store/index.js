@@ -6,8 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
  state: {
    clients: {
-    userClient: {},
-    clientQuery: {},
+    userClient: null,
+    clientQuery: null,
    },
    settings: {
     inputValue: '',
@@ -19,6 +19,9 @@ export default new Vuex.Store({
  },
  getters: {},
  mutations: {
+  setUserClient (state, payload) {
+    state.clients.userClient = payload
+  },
   setClientQuery (state, payload) {
     state.clients.clientQuery = payload
   },

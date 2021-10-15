@@ -15,6 +15,7 @@
 
 <script>
 import axios from '../../node_modules/axios'
+import { validateIpAddress } from '../utils'
 
 export default {
   name: 'Searchbar',
@@ -27,7 +28,7 @@ export default {
         const res = await axios.get(
             `https://geo.ipify.org/api/v2/country,city?apiKey=${this.$store.state.settings.APIKey}`
           );
-          this.$store.state.clients.userClient = res.data
+          this.$store.commit("setUserClient", res.data)
       } catch (error) {
         console.error(error);
       }
@@ -38,15 +39,22 @@ export default {
     async onSearchSubmit(e) {
       e.preventDefault();
       this.$store.state.settings.targetIP = this.$store.state.settings.inputValue
+      const isValidate = validateIpAddress(this.$store.state.settings.targetIP)
+
       try {
+        if (isValidate) {
           const res = await axios.get(
-          `https://geo.ipify.org/api/v2/country,city?apiKey=${this.$store.state.settings.APIKey}&ipAddress=${this.$store.state.settings.targetIP}`
-        );
-        this.$store.commit("setClientQuery", res.data)
-        this.$store.commit("setIsError", false)
+            `https://geo.ipify.org/api/v2/country,city?apiKey=${this.$store.state.settings.APIKey}&ipAddress=${this.$store.state.settings.targetIP}`
+          );
+          this.$store.commit("setClientQuery", res.data)
+          this.$store.commit("setIsError", false)
+        }
+        if (!isValidate) {
+          this.$store.commit("setIsError", true)
+          throw new Error
+        }
       } catch (error) {
         console.error(error);
-        this.$store.commit("setIsError", true)
       }
     },
   }
