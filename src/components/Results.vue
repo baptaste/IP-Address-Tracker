@@ -66,7 +66,7 @@ $DarkGray: hsl(0, 0%, 59%);
 
 .results {
   width: 80%;
-  height: 120px;
+  height: 150px;
   position: absolute;
   top: 70%;
   left: 10%;
@@ -85,6 +85,7 @@ $DarkGray: hsl(0, 0%, 59%);
     margin-block-start: 0;
     margin-block-end: 0;
     padding-inline-start: 0;
+    padding: 0 1rem;
 
     &-data-title {
       width: 100%;
@@ -99,16 +100,18 @@ $DarkGray: hsl(0, 0%, 59%);
 
     &-data-content {
       font-weight: 700;
+      text-transform: capitalize;
     }
 
     &-item {
       position: relative;
       height: 70%;
-      width: 25%;
+      width: 20%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       text-align: left;
+      text-transform: uppercase;
       padding: 0 1rem;
 
       &::after {
@@ -121,6 +124,33 @@ $DarkGray: hsl(0, 0%, 59%);
       }
 
       &:last-child {
+        &::after {
+          content: none;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .results {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    left: 5%;
+
+    &__list {
+      flex-direction: column;
+      padding: 2rem 0 1rem;
+
+      &-data-title {
+        text-align: center;
+      }
+
+      &-item {
+        width: 90%;
+        text-align: center;
+
         &::after {
           content: none;
         }

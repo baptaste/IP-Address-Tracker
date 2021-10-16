@@ -30,7 +30,7 @@ $DarkGray: hsl(0, 0%, 59%);
   width: 100%;
   height: 35%;
   text-align: center;
-  background: url('../assets/pattern-bg.png') no-repeat center;
+  background: url('../../public/images/pattern-bg.png') no-repeat center;
   background-size: cover;
 
   &__title {
@@ -39,6 +39,14 @@ $DarkGray: hsl(0, 0%, 59%);
     color: white;
     padding-top: 1.5rem;
     margin: 0 0 1rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header {
+    &__title {
+      font-size: 1.7rem;
+    }
   }
 }
 

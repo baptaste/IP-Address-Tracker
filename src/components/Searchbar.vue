@@ -9,7 +9,9 @@
       :value="this.$store.state.settings.inputValue"
       @change="onInputValueChange"
     >
-    <button type="submit" class="searchbar__submit">></button>
+    <button type="submit" class="searchbar__submit">
+      <img src="../../public/images/icon-arrow.svg" alt="Arrow">
+    </button>
   </form>
 </template>
 
@@ -31,7 +33,6 @@ export default {
           this.$store.commit("setUserClient", res.data)
           this.$store.commit("setCenter", [res.data.location.lat, res.data.location.lng])
           this.$store.commit("setMarker", [res.data.location.lat, res.data.location.lng])
-          // [this.$store.state.clients.userClient.location.lat, this.$store.state.clients.userClient.location.lng]
       } catch (error) {
         console.error(error);
       }
@@ -67,24 +68,50 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$VeryDarkGray: hsl(0, 0%, 17%);
+$DarkGray: hsl(0, 0%, 59%);
+
 .searchbar {
+  height: 50px;
+
   &__submit {
+    height: 50px;
     padding: 1rem 1.3rem;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     border: none;
-    background-color: hsl(0, 0%, 17%);
+    background-color: black;
     color: white;
     font-weight: bold;
     cursor: pointer;
+    transition: background-color 200ms ease;
+
+    &:hover {
+      background-color: $VeryDarkGray;
+    }
   }
 }
 
 .search-input {
+  height: 50px;
   width: 500px;
+  font-size: 1.1rem;
   padding: 1rem 1.5rem;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
   border: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .searchbar {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .search-input {
+    font-size: .8rem;
+  }
 }
 </style>

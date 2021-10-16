@@ -10,13 +10,18 @@
       </l-tile-layer>
       <l-marker
         :lat-lng="this.$store.state.map.marker">
+         <l-icon
+          :icon-size="[35, 43]"
+          :icon-anchor="[16, 37]"
+          icon-url="/images/icon-location.svg"
+        />
       </l-marker>
     </l-map>
   </main>
 </template>
 
 <script>
-import { LMap, LTileLayer, LMarker } from 'vue2-leaflet';
+import { LMap, LTileLayer, LMarker, LIcon } from 'vue2-leaflet';
 
 export default {
   name: 'Map',
@@ -24,21 +29,24 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
+    LIcon,
   },
 }
 </script>
 
 <style lang="scss" scoped>
 .map {
-  // position: fixed;
-  // top: 30%;
-  // left: 0;
-  // right: 0;
   position: relative;
   width: 100%;
   height: 65%;
   background-color: #2b2b2b;
   text-align: center;
   color: white;
+}
+
+@media screen and (max-width: 500px) {
+  .vue2leaflet-map {
+    width: 100%;
+  }
 }
 </style>
