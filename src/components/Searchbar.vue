@@ -29,6 +29,9 @@ export default {
             `https://geo.ipify.org/api/v2/country,city?apiKey=${this.$store.state.settings.APIKey}`
           );
           this.$store.commit("setUserClient", res.data)
+          this.$store.commit("setCenter", [res.data.location.lat, res.data.location.lng])
+          this.$store.commit("setMarker", [res.data.location.lat, res.data.location.lng])
+          // [this.$store.state.clients.userClient.location.lat, this.$store.state.clients.userClient.location.lng]
       } catch (error) {
         console.error(error);
       }
@@ -48,6 +51,8 @@ export default {
           );
           this.$store.commit("setClientQuery", res.data)
           this.$store.commit("setIsError", false)
+          this.$store.commit("setCenter", [res.data.location.lat, res.data.location.lng])
+          this.$store.commit("setMarker", [res.data.location.lat, res.data.location.lng])
         }
         if (!isValidate) {
           this.$store.commit("setIsError", true)

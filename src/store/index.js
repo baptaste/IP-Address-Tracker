@@ -15,7 +15,16 @@ export default new Vuex.Store({
     APIKey: 'at_GQQdE11o4blMrVEXlzFZjCePgmLmv',
     isError: false,
     errorMsg: 'Error, make sure to enter a valid IP address.',
+    accessToken: 'pk.eyJ1IjoiYmFwdGFzdGUiLCJhIjoiY2t1c2xpaGNkMW5oaTJwcXJ4cDlraG80cCJ9.pIpsLRbnUfph1g7Dw2y-nA',
+    mapAPIurl: `https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=`,
    },
+   map: {
+    zoom: 13,
+    center: [47.41322, -1.219482],
+    marker: [47.41322, -1.219482],
+    attribution: '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+   }
  },
  getters: {},
  mutations: {
@@ -27,6 +36,12 @@ export default new Vuex.Store({
   },
   setIsError (state, payload) {
     state.settings.isError = payload
+  },
+  setCenter (state, payload) {
+    state.map.center = payload
+  },
+  setMarker (state, payload) {
+    state.map.marker = payload
   },
  },
  actions: {}

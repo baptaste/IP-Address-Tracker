@@ -3,22 +3,26 @@
       <ul class="results__list">
         <li class="results__list-item">
           <h2 class="results__list-data-title">IP Address</h2>
-          <p class="results__list-data-content" v-if="this.$store.state.clients.clientQuery === null">
+          <p class="results__list-data-content"
+          v-if="this.$store.state.clients.userClient && this.$store.state.clients.clientQuery === null">
             {{ this.$store.state.clients.userClient.ip }}
           </p>
-          <p class="results__list-data-content" v-if="this.$store.state.clients.clientQuery !== null">
+          <p class="results__list-data-content"
+          v-if="this.$store.state.clients.clientQuery !== null">
             {{ this.$store.state.clients.clientQuery.ip }}
           </p>
         </li>
         <li class="results__list-item">
           <h2 class="results__list-data-title">Location</h2>
-          <p class="results__list-data-content" v-if="this.$store.state.clients.clientQuery === null">
+          <p class="results__list-data-content"
+          v-if="this.$store.state.clients.userClient && this.$store.state.clients.clientQuery === null">
             {{ this.$store.state.clients.userClient.location.city }},
             {{ this.$store.state.clients.userClient.location.region }}
             {{ this.$store.state.clients.userClient.location.postalCode }}
             ({{ this.$store.state.clients.userClient.location.country }})
           </p>
-          <p class="results__list-data-content" v-if="this.$store.state.clients.clientQuery !== null">
+          <p class="results__list-data-content"
+          v-if="this.$store.state.clients.clientQuery !== null">
             {{ this.$store.state.clients.clientQuery.location.city }},
             {{ this.$store.state.clients.clientQuery.location.region }}
             {{ this.$store.state.clients.clientQuery.location.postalCode }}
@@ -27,19 +31,23 @@
         </li>
         <li class="results__list-item">
           <h2 class="results__list-data-title">Timezone</h2>
-          <p class="results__list-data-content"  v-if="this.$store.state.clients.clientQuery === null">
+          <p class="results__list-data-content"
+          v-if="this.$store.state.clients.userClient && this.$store.state.clients.clientQuery === null">
             UTC {{ this.$store.state.clients.userClient.location.timezone }}
           </p>
-          <p class="results__list-data-content"  v-if="this.$store.state.clients.clientQuery !== null">
+          <p class="results__list-data-content"
+          v-if="this.$store.state.clients.clientQuery !== null">
             UTC {{ this.$store.state.clients.clientQuery.location.timezone }}
           </p>
         </li>
         <li class="results__list-item">
           <h2 class="results__list-data-title">ISP</h2>
-          <p class="results__list-data-content" v-if="this.$store.state.clients.clientQuery === null">
+          <p class="results__list-data-content"
+          v-if="this.$store.state.clients.userClient && this.$store.state.clients.clientQuery === null">
             {{ this.$store.state.clients.userClient.isp }}
           </p>
-          <p class="results__list-data-content" v-if="this.$store.state.clients.clientQuery !== null">
+          <p class="results__list-data-content"
+          v-if="this.$store.state.clients.clientQuery !== null">
             {{ this.$store.state.clients.clientQuery.isp }}
           </p>
         </li>
