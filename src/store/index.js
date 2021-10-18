@@ -11,10 +11,9 @@ export default new Vuex.Store({
    },
    settings: {
     inputValue: '',
-    targetIP: '',
-    APIKey: 'at_GQQdE11o4blMrVEXlzFZjCePgmLmv',
+    APIKey: 'at_iYa3J0iaDeh0qZkEFDr2ja9pZgU8n',
     isError: false,
-    errorMsg: 'Error, make sure to enter a valid IP address.',
+    errorMsg: 'Error, make sure to enter a valid public IP address or domain.',
     mapAPIurl: `https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=`,
    },
    map: {

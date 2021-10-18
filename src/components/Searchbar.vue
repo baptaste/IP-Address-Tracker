@@ -17,7 +17,7 @@
 
 <script>
 import axios from '../../node_modules/axios'
-import { validateIpAddress } from '../utils'
+import { validateIpAddress, validateDomain } from '../utils'
 
 export default {
   name: 'Searchbar',
@@ -42,20 +42,41 @@ export default {
     },
     async onSearchSubmit(e) {
       e.preventDefault();
-      this.$store.state.settings.targetIP = this.$store.state.settings.inputValue
-      const isValidate = validateIpAddress(this.$store.state.settings.targetIP)
+      const isIpValidate = validateIpAddress(this.$store.state.settings.inputValue)
+      const isDomainValidate = validateDomain(this.$store.state.settings.inputValue)
 
       try {
-        if (isValidate) {
+        if (isIpValidate && !isDomainValidate) {
           const res = await axios.get(
-            `https://geo.ipify.org/api/v2/country,city?apiKey=${this.$store.state.settings.APIKey}&ipAddress=${this.$store.state.settings.targetIP}`
+            `https://geo.ipify.org/api/v2/country,city?apiKey=${this.$store.state.settings.APIKey}&ipAddress=${this.$store.state.settings.inputValue}`
           );
           this.$store.commit("setClientQuery", res.data)
           this.$store.commit("setIsError", false)
           this.$store.commit("setCenter", [res.data.location.lat, res.data.location.lng])
           this.$store.commit("setMarker", [res.data.location.lat, res.data.location.lng])
         }
-        if (!isValidate) {
+
+        if (isDomainValidate && !isIpValidate) {
+          const res = await axios.get(
+            `https://geo.ipify.org/api/v2/country,city?apiKey=${this.$store.state.settings.APIKey}&domain=${this.$store.state.settings.inputValue}`
+          );
+          this.$store.commit("setClientQuery", res.data)
+          this.$store.commit("setIsError", false)
+          this.$store.commit("setCenter", [res.data.location.lat, res.data.location.lng])
+          this.$store.commit("setMarker", [res.data.location.lat, res.data.location.lng])
+        }
+
+        if (isDomainValidate && isIpValidate) {
+          const res = await axios.get(
+            `https://geo.ipify.org/api/v2/country,city?apiKey=${this.$store.state.settings.APIKey}&domain=${this.$store.state.settings.inputValue}`
+          );
+          this.$store.commit("setClientQuery", res.data)
+          this.$store.commit("setIsError", false)
+          this.$store.commit("setCenter", [res.data.location.lat, res.data.location.lng])
+          this.$store.commit("setMarker", [res.data.location.lat, res.data.location.lng])
+        }
+
+        if (!isIpValidate && !isDomainValidate) {
           this.$store.commit("setIsError", true)
           throw new Error
         }

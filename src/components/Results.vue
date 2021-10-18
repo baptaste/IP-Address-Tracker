@@ -1,5 +1,5 @@
 <template>
-  <div class="results">
+  <div :class="[this.$store.state.settings.isError ? 'results results--error' : 'results']">
       <ul class="results__list">
         <li class="results__list-item">
           <h2 class="results__list-data-title">IP Address</h2>
@@ -68,7 +68,7 @@ $DarkGray: hsl(0, 0%, 59%);
   width: 80%;
   height: 150px;
   position: absolute;
-  top: 70%;
+  top: 75%;
   left: 10%;
   background-color: white;
   color: black;
@@ -138,6 +138,11 @@ $DarkGray: hsl(0, 0%, 59%);
     height: auto;
     margin: 0 auto;
     left: 5%;
+    top: 50%;
+
+    &--error {
+      top: 80%;
+    }
 
     &__list {
       flex-direction: column;
@@ -156,6 +161,12 @@ $DarkGray: hsl(0, 0%, 59%);
         }
       }
     }
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .results {
+    margin-top: 1rem;
   }
 }
 </style>

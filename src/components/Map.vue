@@ -38,7 +38,7 @@ export default {
 .map {
   position: relative;
   width: 100%;
-  height: 65%;
+  height: 60%;
   background-color: #2b2b2b;
   text-align: center;
   color: white;
@@ -49,4 +49,5 @@ export default {
     width: 100%;
   }
 }
+
 </style>
